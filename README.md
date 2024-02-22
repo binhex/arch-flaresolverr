@@ -12,7 +12,7 @@ Latest stable Flaresolverr release from Arch Linux AUR.
 
 **Usage**
 
-```bash
+```text
 docker run -d \
     -p 8191:8191 \
     --name=<container name> \
@@ -28,7 +28,7 @@ Please replace all user variables in the above command defined by <> with the co
 
 **Access application**
 
-`http://<host ip>:8191`
+`http://<host ip>:8191/v1`
 
 **Example**
 
