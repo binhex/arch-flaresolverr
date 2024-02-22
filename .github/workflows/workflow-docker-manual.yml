@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       tags:
-        description: 'Enter tag name for test/dev image'
+        description: 'Enter tag namey for test/dev image'
         default: 'test'
 
 jobs:
