@@ -39,7 +39,7 @@ mv /tmp/scripts-master/shell/arch/docker/*.sh /usr/local/bin/
 ####
 
 # define pacman packages
-pacman_packages=""
+pacman_packages="chromium xorg-server-xvfb"
 
 # install compiled packages using pacman
 if [[ ! -z "${pacman_packages}" ]]; then
@@ -50,10 +50,24 @@ fi
 ####
 
 # define aur packages
-aur_packages="flaresolverr-bin"
+aur_packages=""
 
 # call aur install script (arch user repo)
 source aur.sh
+
+# custom
+####
+
+install_path="/opt/flaresolverr"
+
+# clone github repo
+github.sh --install-path "${install_path}" --github-owner "FlareSolverr" --github-repo "FlareSolverr"
+
+# install pip packagesfrom requirements.txt
+pip.sh --create-virtualenv 'yes' --install-path "${install_path}" --virtualenv-path "${install_path}/env" --log-level 'WARN'
+
+# temporary fix see issue https://github.com/FlareSolverr/FlareSolverr/issues/1253
+curl -o "${install_path}/src/flaresolverr_service.py" -L https://raw.githubusercontent.com/MCG-pok/FlareSolverr/refs/heads/master/src/flaresolverr_service.py
 
 # container perms
 ####
