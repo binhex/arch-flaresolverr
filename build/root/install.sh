@@ -60,8 +60,8 @@ source aur.sh
 
 install_path="/opt/flaresolverr"
 
-# clone github repo
-github.sh --install-path "${install_path}" --github-owner "FlareSolverr" --github-repo "FlareSolverr"
+# download latest release
+github.sh --install-path "${install_path}" --github-owner 'FlareSolverr' --github-repo 'FlareSolverr' --query-type 'release' --download-branch 'main'
 
 # install pip packagesfrom requirements.txt
 pip.sh --create-virtualenv 'yes' --install-path "${install_path}" --virtualenv-path "${install_path}/env" --log-level 'WARN'
