@@ -7,4 +7,4 @@ install_path="/opt/flaresolverr"
 source "${install_path}/env/bin/activate"
 
 # run flaresolverr
-python "${install_path}/src/flaresolverr.py"
+no_sandbox=true && python "${install_path}/src/flaresolverr.py"
