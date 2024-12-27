@@ -64,7 +64,7 @@ install_path="/opt/flaresolverr"
 github.sh --install-path "${install_path}" --github-owner 'FlareSolverr' --github-repo 'FlareSolverr' --query-type 'release' --download-branch 'main'
 
 # install pip packagesfrom requirements.txt
-pip.sh --create-virtualenv 'yes' --install-path "${install_path}" --virtualenv-path "${install_path}/env" --log-level 'WARN'
+python.sh --create-virtualenv 'yes' --requirements-path "${install_path}" --virtualenv-path "${install_path}/env"
 
 # temporary fix see issue https://github.com/FlareSolverr/FlareSolverr/issues/1253
 curl -o "${install_path}/src/flaresolverr_service.py" -L https://raw.githubusercontent.com/MCG-pok/FlareSolverr/refs/heads/master/src/flaresolverr_service.py
