@@ -64,10 +64,8 @@ install_path="/opt/flaresolverr"
 github.sh --install-path "${install_path}" --github-owner 'FlareSolverr' --github-repo 'FlareSolverr' --query-type 'release' --download-branch 'main'
 
 # install pip packagesfrom requirements.txt
-python.sh --create-virtualenv 'yes' --requirements-path "${install_path}" --virtualenv-path "${install_path}/env"
-
-# temporary fix see issue https://github.com/FlareSolverr/FlareSolverr/issues/1253
-curl -o "${install_path}/src/flaresolverr_service.py" -L https://raw.githubusercontent.com/MCG-pok/FlareSolverr/refs/heads/master/src/flaresolverr_service.py
+# pip package 'standard-cgi' required as we are now using Python 3.13, and cgi module has been removed as part of the 'dead batteries' story - see https://peps.python.org/pep-0594/
+python.sh --create-virtualenv 'yes' --requirements-path "${install_path}" --virtualenv-path "${install_path}/env" --pip-packages 'standard-cgi'
 
 # container perms
 ####
