@@ -19,7 +19,6 @@ Latest stable Flaresolverr release from Arch Linux AUR.
 
 ```text
 docker run -d \
-
     -p 8191:8191 \
     --name=<container name> \
     -v <path for config files>:/config \
@@ -43,7 +42,6 @@ correct values.
 
 ```bash
 docker run -d \
-
     -p 8191:8191 \
     --name=flaresolverr \
     -v /apps/docker/flaresolverr:/config \
@@ -51,9 +49,7 @@ docker run -d \
     -e UMASK=000 \
     -e PUID=0 \
     -e PGID=0 \
-
     binhex/arch-flaresolverr
-
 ```
 
 ## Notes
