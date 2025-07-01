@@ -1,19 +1,25 @@
-**Application**
+# Application
 
 [Flaresolverr](https://github.com/FlareSolverr/FlareSolverr)
 
-**Description**
+## Description
 
-FlareSolverr starts a proxy server, and it waits for user requests in an idle state using few resources. When some request arrives, it uses Selenium with the undetected-chromedriver to create a web browser (Chrome). It opens the URL with user parameters and waits until the Cloudflare challenge is solved (or timeout). The HTML code and the cookies are sent back to the user, and those cookies can be used to bypass Cloudflare using other HTTP clients.
+FlareSolverr starts a proxy server, and it waits for user requests in an idle
+state using few resources. When some request arrives, it uses Selenium with the
+undetected-chromedriver to create a web browser (Chrome). It opens the URL with
+user parameters and waits until the Cloudflare challenge is solved (or timeout).
+The HTML code and the cookies are sent back to the user, and those cookies can
+be used to bypass Cloudflare using other HTTP clients.
 
-**Build notes**
+## Build notes
 
 Latest stable Flaresolverr release from Arch Linux AUR.
 
-**Usage**
+## Usage
 
 ```text
 docker run -d \
+
     -p 8191:8191 \
     --name=<container name> \
     -v <path for config files>:/config \
@@ -21,19 +27,23 @@ docker run -d \
     -e UMASK=<umask for created files> \
     -e PUID=<uid for user> \
     -e PGID=<gid for user> \
+
     binhex/arch-flaresolverr
+
 ```
 
-Please replace all user variables in the above command defined by <> with the correct values.
+Please replace all user variables in the above command defined by <> with the
+correct values.
 
-**Access application**
+## Access application
 
 `http://<host ip>:8191/v1`
 
-**Example**
+## Example
 
 ```bash
 docker run -d \
+
     -p 8191:8191 \
     --name=flaresolverr \
     -v /apps/docker/flaresolverr:/config \
@@ -41,15 +51,19 @@ docker run -d \
     -e UMASK=000 \
     -e PUID=0 \
     -e PGID=0 \
+
     binhex/arch-flaresolverr
+
 ```
 
-**Notes**
+## Notes
 
-User ID (PUID) and Group ID (PGID) can be found by issuing the following command for the user you want to run the container as:-
+User ID (PUID) and Group ID (PGID) can be found by issuing the following command
+for the user you want to run the container as:-
 
 ```text
 id <username>
+
 ```
 
 ___
