@@ -27,6 +27,13 @@ ADD run/nobody/*.sh /home/nobody/
 RUN chmod +x /root/*.sh && \
 	/bin/bash /root/install.sh "${RELEASETAG}" "${TARGETARCH}"
 
+# healthcheck
+#############
+
+# ensure internet connectivity, used primarily when sharing network with other conainers
+HEALTHCHECK --interval=1m --timeout=3s \
+  CMD curl -s https://github.com &>/dev/null || kill 1
+
 # set permissions
 #################
 
