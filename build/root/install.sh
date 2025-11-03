@@ -31,7 +31,7 @@ if [[ -z "${TARGETARCH}" ]]; then
 fi
 
 # write APPNAME and RELEASETAG to file to record the app name and release tag used to build the image
-echo -e "export APPNAME=${APPNAME}\nexport IMAGE_RELEASE_TAG=${RELEASETAG}\nexport TARGETARCH=${TARGETARCH}\n" >> '/etc/image-build-info'
+echo -e "export APPNAME=${APPNAME}\nexport IMAGE_RELEASE_TAG=${RELEASETAG}\n" >> '/etc/image-build-info'
 
 # ensure we have the latest builds scripts
 refresh.sh
@@ -54,12 +54,18 @@ fi
 # custom
 ####
 
-install_path="/opt/flaresolverr"
+download_path="/tmp/flaresolverr"
+install_path="/opt"
+
+mkdir -p "${download_path}" "${install_path}"
 
 # download latest release
-github.sh --install-path "${install_path}" --github-owner 'FlareSolverr' --github-repo 'FlareSolverr' --query-type 'release' --download-branch 'main'
+gh.sh --github-owner FlareSolverr --github-repo FlareSolverr --release-type asset --download-path "${download_path}" --asset-glob '*linux_x64.tar.gz'
 
-# install pip packagesfrom requirements.txt
+# unpack to install path
+tar -xvf "${download_path}/"*.tar.gz -C "${install_path}"
+
+# install pip packages from requirements.txt
 # pip package 'standard-cgi' required as we are now using Python 3.13, and cgi module has been removed as part of the 'dead batteries' story - see https://peps.python.org/pep-0594/
 python.sh --create-virtualenv 'yes' --requirements-path "${install_path}" --virtualenv-path "${install_path}/env" --pip-packages 'standard-cgi'
 
