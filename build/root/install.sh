@@ -60,7 +60,7 @@ install_path="/opt"
 mkdir -p "${download_path}" "${install_path}"
 
 # download latest release
-gh.sh --github-owner FlareSolverr --github-repo FlareSolverr --release-type asset --download-path "${download_path}" --asset-glob '*linux_x64.tar.gz'
+gh.sh --github-owner FlareSolverr --github-repo FlareSolverr --download-type release --release-type binary --download-path "${download_path}" --asset-glob '*linux_x64.tar.gz'
 
 # unpack to install path
 tar -xvf "${download_path}/"*.tar.gz -C "${install_path}"
