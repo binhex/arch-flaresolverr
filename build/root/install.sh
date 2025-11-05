@@ -55,15 +55,15 @@ fi
 ####
 
 download_path="/tmp/flaresolverr"
-install_path="/opt"
+install_path="/opt/flaresolverr"
 
 mkdir -p "${download_path}" "${install_path}"
 
 # download latest release
-gh.sh --github-owner FlareSolverr --github-repo FlareSolverr --download-type release --release-type binary --download-path "${download_path}" --asset-glob '*linux_x64.tar.gz'
+gh.sh --github-owner FlareSolverr --github-repo FlareSolverr --download-type release --release-type source --download-path "${download_path}"
 
-# unpack to install path
-tar -xvf "${download_path}/"*.tar.gz -C "${install_path}"
+# unpack to install path, '--strip-components 1' is used to remove root folder in the tarball
+tar -xvf "${download_path}/"*.tar.gz -C "${install_path}" --strip-components 1
 
 # install pip packages from requirements.txt
 # pip package 'standard-cgi' required as we are now using Python 3.13, and cgi module has been removed as part of the 'dead batteries' story - see https://peps.python.org/pep-0594/
